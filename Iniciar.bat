@@ -46,6 +46,7 @@ echo Iniciando servidor local...
 start "" /min python -m http.server 8000
 
 echo Abrindo pagina no navegador...
-start "" http://localhost:8000/Index.html
+start "" http://localhost:8000/index.html
 
 exit
+
