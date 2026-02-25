@@ -49,7 +49,6 @@
       z-index: 10;
     }
 
-    /* Coluna dos botões a direita */
     #coluna-botoes {
       position: absolute;
       top: 0;
@@ -57,7 +56,7 @@
       right: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* topo, meio e base */
+      justify-content: space-between;
       align-items: center;
       z-index: 20;
     }
@@ -69,7 +68,6 @@
       cursor: pointer;
     }
 
-    /* Top buttons */
     .top-buttons {
       display: flex;
       flex-direction: column;
@@ -77,7 +75,6 @@
       margin-top: 10px;
     }
 
-    /* Middle buttons centralizados verticalmente */
     .middle-buttons {
       display: flex;
       flex-direction: column;
@@ -86,15 +83,13 @@
       margin-bottom: auto;
     }
 
-    /* Bottom button fixo na base */
     .bottom-button {
       margin-bottom: 10px;
     }
 
-    /* Lista de peças */
     #lista-pecas {
       position: absolute;
-      top: 130px; /* logo (88px) + 20px margem superior + 22px abaixo */
+      top: 130px;
       left: 20px;
       display: flex;
       flex-direction: column;
@@ -109,15 +104,13 @@
       cursor: default;
     }
 
-    /* Primeira palavra (Denominação) */
     #lista-pecas span.titulo {
       font-weight: bold;
       text-decoration: underline;
-      margin-bottom: 10px; /* espaçamento mínimo de 10px */
+      margin-bottom: 10px;
     }
   </style>
 
-  <!-- Import map do Three.js -->
   <script type="importmap">
   {
     "imports": {
@@ -126,7 +119,6 @@
     }
   }
   </script>
-
 </head>
 
 <body>
@@ -135,27 +127,22 @@
     <img id="logo" src="Assets/Imagens/logo-niagara.png" alt="Logo Niagara">
   </a>
 
-  <!-- Coluna de botões -->
   <div id="coluna-botoes">
-    <!-- Top buttons -->
     <div class="top-buttons">
-      <img src="/Assets/Botoes/Home_Button.png" alt="Home">
-      <img src="/Assets/Botoes/2D_Button.png" alt="2D">
+      <img src="Assets/Botoes/Home_Button.png" alt="Home">
+      <img src="Assets/Botoes/2D_Button.png" alt="2D">
     </div>
 
-    <!-- Middle buttons centralizados verticalmente -->
     <div class="middle-buttons">
-      <img src="/Assets/Botoes/Assembly_Button.png" alt="Assembly">
-      <img src="/Assets/Botoes/Explode_button.png" alt="Explode">
+      <img src="Assets/Botoes/Assembly_Button.png" alt="Assembly">
+      <img src="Assets/Botoes/Explode_button.png" alt="Explode">
     </div>
 
-    <!-- Bottom button -->
     <div class="bottom-button">
-      <img src="/Assets/Botoes/Hide_Button.png" alt="Hide">
+      <img src="Assets/Botoes/Hide_Button.png" alt="Hide">
     </div>
   </div>
 
-  <!-- Lista de peças -->  
   <div id="lista-pecas">
     <span class="titulo">Denominação</span>
     <span>Corpo</span>
@@ -175,9 +162,8 @@
     <span>Anéis de Gaxeta</span>
     <span>Junta</span>
     <span>Atuador Penta-410</span>
-  </div>  
+  </div>
 
-  <!-- Título -->  
   <div id="titulo-modelo">
     VÁLVULA ANGULAR - SÉRIE 286 HASTE CURTA - ENTRADA E SAÍDA IGUAIS - CLASSE 150
   </div>
