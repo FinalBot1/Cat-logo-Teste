@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Página Nova</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Logo */
+    #logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 250px;
+      height: auto;
+      max-width: 250px;
+      max-height: 88px;
+    }
+
+    /* Botões superiores */
+    #btn-desmontar, #btn-home-top {
+      position: absolute;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    #btn-home-top { background-color: #006400; }
+    #btn-desmontar { background-color: #3399FF; }
+
+    #btn-home-top:hover, #btn-desmontar:hover {
+      background-color: #ff7a00 !important;
+      color: #fff !important;
+    }
+
+    /* Textos */
+    #textos-container {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    #catalogo-texto {
+      font-weight: bold;
+      color: #333;
+      font-size: calc(32.4 / 80 * var(--logo-height));
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    #procedimento-texto {
+      font-weight: bold;
+      color: #006400;
+      text-decoration: underline;
+      font-size: calc(27 / 80 * var(--logo-height));
+      line-height: 1;
+    }
+
+    /* Container principal */
+    #imagens-container {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-sizing: border-box;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: none;
+    }
+
+    /* Botões inferiores */
+    .bottom-buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .bottom-buttons button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .bottom-buttons button:disabled { opacity: 0.3; cursor: default; }
+
+    .bottom-buttons button img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: 0.2s;
+    }
+
+    /* Crossfade images */
+    .crossfade {
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <a href="http://www.niagara.com.br" target="_blank" rel="noopener noreferrer">
+    <img id="logo" src="Assets/Imagens/logo-niagara.png" alt="Logo Niagara">
+  </a>
+
+  <!-- Botão Home -->
+  <button id="btn-home-top">
+    <img src="Assets/Botoes/Home_Button.png" data-hover="Assets/Botoes/Home_Button_Highlight.png" alt="Home">
+  </button>
+
+  <!-- Botão Desmontar/Montar -->
+  <button id="btn-desmontar">Desmontar</button>
+
+  <!-- Textos -->
+  <div id="textos-container">
+    <div id="catalogo-texto">Catálogo - Válvulas de Alumina</div>
+    <div id="procedimento-texto">Procedimento de Montagem</div>
+  </div>
+
+  <!-- Container principal -->
+  <div id="imagens-container">
+    <img id="img1" class="crossfade" src="" alt="">
+    <img id="img2" class="crossfade" src="" alt="">
+    <div class="bottom-buttons">
+      <button id="btn-avancar" style="width:96px;height:48px;">
+        <img src='Assets/Botoes/Avançar_Button.png' data-hover='Assets/Botoes/Avançar_Button_Highlight.png' alt="Avançar">
+      </button>
+      <button id="btn-retornar" style="width:96px;height:48px;">
+        <img src='Assets/Botoes/Retornar_Button.png' data-hover='Assets/Botoes/Retornar_Button_Highlight.png' alt="Retornar">
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const logo = document.getElementById('logo');
+    const container = document.getElementById('imagens-container');
+    const btnDesmontar = document.getElementById('btn-desmontar');
+    const btnHomeTop = document.getElementById('btn-home-top');
+    const img1 = document.getElementById('img1');
+    const img2 = document.getElementById('img2');
+    const btnAvancar = document.getElementById('btn-avancar');
+    const btnRetornar = document.getElementById('btn-retornar');
+
+    let currentIndex = 1;
+    let diretorio = "Montar"; 
+    const pastaBase = "Assets/Treinamento/286/";
+    let showingImg1 = true;
+
+    function formatNumber(n){ return n.toString().padStart(2,'0'); }
+
+    function carregarImagem(index, comFade=true){
+      const url = `${pastaBase}${diretorio}/${formatNumber(index)}.png`;
+      const imgTeste = new Image();
+      imgTeste.onload = () => {
+        const fadeImg = showingImg1 ? img2 : img1;
+        const currentImg = showingImg1 ? img1 : img2;
+
+        fadeImg.src = url;
+        if(comFade){
+          fadeImg.style.opacity = 0;
+          fadeImg.offsetHeight; 
+          fadeImg.style.transition = "opacity 1s ease-in-out";
+          fadeImg.style.opacity = 1;
+          currentImg.style.opacity = 0;
+        } else {
+          fadeImg.style.transition = "none";
+          fadeImg.style.opacity = 1;
+          currentImg.style.opacity = 0;
+        }
+
+        showingImg1 = !showingImg1;
+        atualizarBotoes();
+      };
+      imgTeste.onerror = () => atualizarBotoes();
+      imgTeste.src = url;
+    }
+
+    function proximaImagem() {
+      const proximoIndex = currentIndex + 1;
+      const url = `${pastaBase}${diretorio}/${formatNumber(proximoIndex)}.png`;
+      const imgTeste = new Image();
+      imgTeste.onload = () => {
+        currentIndex = proximoIndex;
+        carregarImagem(currentIndex, true);
+      };
+      imgTeste.onerror = () => atualizarBotoes();
+      imgTeste.src = url;
+    }
+
+    function imagemAnterior() {
+      if(currentIndex > 1){
+        currentIndex--;
+        carregarImagem(currentIndex, true);
+      } else {
+        atualizarBotoes();
+      }
+    }
+
+    function atualizarBotoes() {
+      const nextUrl = `${pastaBase}${diretorio}/${formatNumber(currentIndex+1)}.png`;
+      const nextImg = new Image();
+      nextImg.onload = () => btnAvancar.disabled = false;
+      nextImg.onerror = () => btnAvancar.disabled = true;
+      nextImg.src = nextUrl;
+      btnRetornar.disabled = currentIndex === 1;
+    }
+
+    btnDesmontar.addEventListener('click', () => {
+      if(diretorio === "Montar"){
+        diretorio = "Desmontar";
+        btnDesmontar.style.backgroundColor = "#3399FF";
+        btnDesmontar.textContent = "Montar";
+      } else {
+        diretorio = "Montar";
+        btnDesmontar.style.backgroundColor = "#006400";
+        btnDesmontar.textContent = "Desmontar";
+      }
+      currentIndex = 1;
+      carregarImagem(currentIndex, false); 
+    });
+
+    // ================= Novo: botão Home redireciona para index.html =================
+    btnHomeTop.addEventListener('click', () => {
+      window.location.href = "index.html";
+    });
+
+    window.addEventListener('load', () => {
+      atualizarLayout();
+      carregarImagem(currentIndex, false);
+    });
+
+    window.addEventListener('resize', atualizarLayout);
+    btnAvancar.addEventListener('click', proximaImagem);
+    btnRetornar.addEventListener('click', imagemAnterior);
+
+    const hoverButtons = document.querySelectorAll('button img');
+    hoverButtons.forEach(img => {
+      const original = img.src;
+      const highlight = img.dataset.hover;
+      img.parentElement.addEventListener('mouseenter', () => img.src = highlight);
+      img.parentElement.addEventListener('mouseleave', () => img.src = original);
+    });
+
+    function atualizarLayout(){
+      const logoRect = logo.getBoundingClientRect();
+      const logoHeight = logoRect.height;
+      document.documentElement.style.setProperty('--logo-height', `${logoHeight}px`);
+
+      const topContainer = logoRect.bottom + 20;
+      const alturaContainer = window.innerHeight - 10 - topContainer;
+      container.style.top = `${topContainer}px`;
+      container.style.height = `${alturaContainer}px`;
+      container.style.width = `${alturaContainer * 1.75}px`;
+
+      const btnHeight = logoHeight * 0.7;
+      const escalaHome = 0.80;
+      const homeHeight = btnHeight * escalaHome;
+      btnHomeTop.style.height = `${homeHeight}px`;
+      btnHomeTop.style.width = `${homeHeight}px`;
+      const centroDesmontar = logoRect.bottom - (btnHeight / 2);
+      btnHomeTop.style.top = `${centroDesmontar - (homeHeight / 2)}px`;
+      const offsetExtra = 10;
+      btnHomeTop.style.right = `${logoRect.left + offsetExtra}px`;
+
+      btnDesmontar.style.height = `${btnHeight}px`;
+      btnDesmontar.style.width = `${btnHeight * 2}px`;
+      btnDesmontar.style.top = `${logoRect.bottom - btnHeight}px`;
+      const espacamentoEntreBotoes = 30;
+      btnDesmontar.style.right = `${logoRect.left + offsetExtra + homeHeight + espacamentoEntreBotoes}px`;
+      btnDesmontar.style.fontSize = `${16 * 1.3}px`;
+    }
+  </script>
+
+</body>
+</html>

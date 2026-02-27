@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Niagara - Catálogo 2026</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 250px;
+      height: 88px;
+      object-fit: contain;
+      z-index: 10;
+    }
+
+    #viewer3d {
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #titulo-modelo {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Coluna dos botões a direita */
+    #coluna-botoes {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+    }
+
+    #coluna-botoes img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    .top-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+    }
+
+    .middle-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .bottom-button {
+      margin-bottom: 10px;
+    }
+
+    /* Lista de peças */
+    #lista-pecas {
+      position: absolute;
+      top: 130px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      color: #333;
+      z-index: 15;
+    }
+
+    #lista-pecas span {
+      margin-bottom: 4px;
+      cursor: default;
+    }
+
+    #lista-pecas span.titulo {
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <!-- Import map do Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
+      "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
+    }
+  }
+  </script>
+
+</head>
+
+<body>
+
+  <a href="http://www.niagara.com.br" target="_blank" rel="noopener noreferrer">
+    <img id="logo" src="Assets/Imagens/logo-niagara.png" alt="Logo Niagara">
+  </a>
+
+  <!-- Coluna de botões -->
+  <div id="coluna-botoes">
+    <div class="top-buttons">
+      <img src="Assets/Botoes/Home_Button.png" alt="Home">
+      <img src="Assets/Botoes/2D_Button.png" alt="2D">
+    </div>
+
+    <div class="middle-buttons">
+      <img src="Assets/Botoes/Assembly_Button.png" alt="Assembly">
+      <img src="Assets/Botoes/Explode_Button.png" alt="Explode">
+    </div>
+
+    <div class="bottom-button">
+      <img src="Assets/Botoes/Hide_Button.png" alt="Hide">
+    </div>
+  </div>
+
+  <!-- Lista de peças -->  
+  <div id="lista-pecas">
+    <span class="titulo">Denominação</span>
+    <span>Corpo</span>
+    <span>Castelo</span>
+    <span>Sede</span>
+    <span>Disco</span>
+    <span>Haste</span>
+    <span>Preme-Gaxeta</span>
+    <span>Trava da Haste</span>
+    <span>Bucha da Haste</span>
+    <span>Rolamento</span>
+    <span>Suporte da Trava</span>
+    <span>Volante Trava</span>
+    <span>Volante da Haste</span>
+    <span>Proteção da Haste</span>
+    <span>Anel Raspador</span>
+    <span>Anéis de Gaxeta</span>
+    <span>Junta</span>
+    <span>Atuador Penta-410</span>
+  </div>  
+
+  <div id="titulo-modelo">
+    VÁLVULA ANGULAR - SÉRIE 286 HASTE CURTA - ENTRADA E SAÍDA IGUAIS - CLASSE 150
+  </div>
+
+  <div id="viewer3d"></div>
+
+  <script type="module" src="Three_module.js"></script>
+
+</body>
+</html>
