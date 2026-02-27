@@ -96,7 +96,7 @@ window.addEventListener("resize", () => {
 // =====================
 const btnHome = document.querySelector('#coluna-botoes .top-buttons img[alt="Home"]');
 btnHome.addEventListener("click", () => {
-  window.location.href = "Menu.html";
+  window.location.href = "index.html";
 });
 
 const btn2D = document.querySelector('#coluna-botoes .top-buttons img[alt="2D"]');
