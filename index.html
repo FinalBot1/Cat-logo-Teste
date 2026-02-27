@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Página Nova</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Logo */
+    #logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 250px;
+      height: auto;
+      max-width: 250px;
+      max-height: 88px;
+    }
+
+    /* Textos */
+    #textos-container {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0;
+    }
+
+    #catalogo-texto {
+      font-weight: bold;
+      color: #333;
+      font-size: calc(32.4 / 80 * var(--logo-height));
+      line-height: 1;
+    }
+
+    #menu-texto {
+      font-weight: bold;
+      color: #006400;
+      text-decoration: underline;
+      font-size: calc(27 / 80 * var(--logo-height));
+      margin-top: calc(5 / 80 * var(--logo-height));
+      line-height: 1;
+    }
+
+    /* Container das imagens */
+    #imagens-container {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      width: calc(100% - 20px);
+      max-width: 1920px;
+      background-color: #fff;
+    }
+
+    .imagem-item {
+      position: relative; /* necessário para posicionamento absoluto dos botões */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .imagem-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Container de botões sobrepostos */
+    .botoes-container {
+      position: absolute;
+      bottom: 5px; /* ligeiramente acima da borda inferior da imagem */
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 5px;
+      pointer-events: auto;
+    }
+
+    .botoes-container button {
+      cursor: pointer;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background-color: rgba(238, 238, 238, 0.9);
+      transition: background-color 0.2s, font-size 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0; /* removemos padding fixo para calcular via JS */
+    }
+
+    .botoes-container button:hover {
+      background-color: rgba(204, 204, 204, 0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <a href="http://www.niagara.com.br" target="_blank" rel="noopener noreferrer">
+    <img id="logo" src="Assets/Imagens/logo-niagara.png" alt="Logo Niagara">
+  </a>
+
+  <!-- Textos -->
+  <div id="textos-container">
+    <div id="catalogo-texto">Catálogo - Válvulas de Alumina</div>
+    <div id="menu-texto">Menu</div>
+  </div>
+
+  <!-- Container das 12 imagens -->
+  <div id="imagens-container">
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+    <div class="imagem-item"></div>
+  </div>
+
+  <script>
+    const logo = document.getElementById('logo');
+    const textos = document.getElementById('textos-container');
+    const menu = document.getElementById('menu-texto');
+    const container = document.getElementById('imagens-container');
+
+    const imagens = [
+      "Assets/Imagens/Menu1.png",
+      "Assets/Imagens/Menu2.png",
+      "Assets/Imagens/Menu3.png",
+      "Assets/Imagens/Menu4.png",
+      "Assets/Imagens/Menu5.png",
+      "Assets/Imagens/Menu6.png",
+      "Assets/Imagens/Menu7.png",
+      "Assets/Imagens/Menu8.png",
+      "Assets/Imagens/Menu9.png",
+      "Assets/Imagens/Menu10.png",
+      "Assets/Imagens/Menu11.png",
+      "Assets/Imagens/Menu12.png"
+    ];
+
+    const items = document.querySelectorAll('.imagem-item');
+
+    items.forEach((item, index) => {
+      // Imagem
+      const img = document.createElement('img');
+      img.src = imagens[index];
+      img.alt = `Menu ${index + 1}`;
+      item.appendChild(img);
+
+      // Container de botões sobrepostos
+      const botoes = document.createElement('div');
+      botoes.className = 'botoes-container';
+
+      const btn3d = document.createElement('button');
+      btn3d.innerText = 'Desenho 3D';
+
+      const btnManut = document.createElement('button');
+      btnManut.innerText = 'Manutenção';
+
+      // ⚡ Alteração mínima: redirecionamento apenas para o segundo div da primeira linha
+      if (index === 1) {
+        btn3d.onclick = () => window.location.href = "3D.html";
+        btnManut.onclick = () => window.location.href = "Treinamento.html";
+      }
+
+      botoes.appendChild(btn3d);
+      botoes.appendChild(btnManut);
+      item.appendChild(botoes);
+    });
+
+    /* Atualiza layout responsivo */
+    function atualizarLayout() {
+      const logoHeight = logo.getBoundingClientRect().height;
+      textos.style.setProperty('--logo-height', `${logoHeight}px`);
+
+      const menuRect = menu.getBoundingClientRect();
+      const topContainer = menuRect.bottom + 20;
+
+      const alturaContainer = window.innerHeight - 10 - topContainer;
+      container.style.top = `${topContainer}px`;
+      container.style.height = `${alturaContainer}px`;
+    }
+
+    /* Atualiza tamanho proporcional dos botões e do texto */
+    function atualizarBotoes() {
+      const items = document.querySelectorAll('.imagem-item');
+      items.forEach(item => {
+        const botoes = item.querySelectorAll('button');
+        const larguraItem = item.getBoundingClientRect().width;
+
+        botoes.forEach(btn => {
+          const larguraBotao = larguraItem * 0.45; // 45% da célula
+          const alturaBotao = larguraBotao * 0.25; // altura proporcional à largura
+          btn.style.width = `${larguraBotao}px`;
+          btn.style.height = `${alturaBotao}px`;
+
+          // Fonte proporcional à altura do botão
+          btn.style.fontSize = `${alturaBotao * 0.4}px`; // 40% da altura
+        });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      atualizarLayout();
+      atualizarBotoes();
+    });
+
+    window.addEventListener('resize', () => {
+      atualizarLayout();
+      atualizarBotoes();
+    });
+  </script>
+
+</body>
+</html>
