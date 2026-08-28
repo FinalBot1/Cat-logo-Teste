@@ -13,7 +13,7 @@ export const catalogo = [
 
     {
         texto:"286 / AS1A - Válvula Globo Angular - Entrada e Saída Iguais - HC - Classe 150",
-        imagem:"../Assets/Imagens/AS1A_Img_00.gif",
+        imagem:"./Assets/Imagens/AS1A_Img_00.gif",
 
         lubrificacao:"Trainings/AS3A_Lubr.html",
         montagem:"Trainings/AS3A_M_TR.html",
@@ -24,7 +24,7 @@ export const catalogo = [
 
     {
         texto:"287 / AS4A - Válvula Globo Angular - Entrada e Saída Iguais - HL - Classe 150",
-        imagem:"../Assets/Imagens/AS4_Img_00.gif",
+        imagem:"./Assets/Imagens/AS4_Img_00.gif",
 
         lubrificacao:"Trainings/AS3A_Lubr.html",
         montagem:"Trainings/AS3A_M_TR.html",
@@ -35,18 +35,18 @@ export const catalogo = [
 
     {
         texto:"CH5 / 259 - Válvula Retenção Angular - Entrada e Saída Iguais - Classe 150",
-        imagem:"../Assets/Imagens/259_Img_00.gif",
+        imagem:"./Assets/Imagens/259_Img_00.gif",
 
         lubrificacao:"Trainings/AS3A_Lubr.html",
         montagem:"Trainings/AS3A_M_TR.html",
         desmontagem:"Trainings/AS3A_D_TR.html",
 
-        catalogo3D:"Assemblies/CH5_3D.html"
+        catalogo3D:"Assemblies/CH5_3D1.html"
     },
 
     {
         texto:"Penta-410 / 420 / 430 - Atuador Redutor de Engrenagens",
-        imagem:"../Assets/Imagens/Penta_Img_00.gif",
+        imagem:"./Assets/Imagens/Penta_Img_00.gif",
 
         lubrificacao:"Trainings/AS3A_Lubr.html",
         montagem:"Trainings/Penta_M_TR.html",
