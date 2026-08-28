@@ -1,4 +1,4 @@
-export const modelFile = "./Files/AS3A.glb";
+export const modelFile = "./Files/CH5.glb";
 
 export const partsData = [
      {
