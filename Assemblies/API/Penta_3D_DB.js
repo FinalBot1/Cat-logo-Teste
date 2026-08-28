@@ -1,4 +1,4 @@
-export const modelFile = "./Files/Penta.glb";
+export const modelFile = "https://nxhautbtejudvzsrytvi.supabase.co/storage/v1/object/sign/niagara_storage/Assemblies/Penta.glb?token=eyJraWQiOiI1NTEyNjllMi04YzlhLTQ4MTAtOGI2Yi1jNWI5Mzg3YWVmNDUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJuaWFnYXJhX3N0b3JhZ2UvQXNzZW1ibGllcy9QZW50YS5nbGIiLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzg3OTM4NzM1LCJleHAiOjI0MTg2NTg3MzV9.ZejplQTbUG9dTcmwMXG75AjbnmBWmKL-DqhS_ssVnUiREmEjOjUbpcgANFHMgg-AX6QPXExRG9OBYVNc4sNpTw";
 
 export const partsData = [
     {
