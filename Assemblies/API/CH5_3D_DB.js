@@ -1,4 +1,4 @@
-export const modelFile = "./Files/CH5.glb";
+export const modelFile = "https://nxhautbtejudvzsrytvi.supabase.co/storage/v1/object/sign/niagara_storage/Assemblies/CH5.glb?token=eyJraWQiOiI1NTEyNjllMi04YzlhLTQ4MTAtOGI2Yi1jNWI5Mzg3YWVmNDUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJuaWFnYXJhX3N0b3JhZ2UvQXNzZW1ibGllcy9DSDUuZ2xiIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzkzODcyMiwiZXhwIjoyNDE4NjU4NzIyfQ.QWGHkzYHIc2LWBpmx2rVKR0yMs6NkK0RU0mJL30DD97b6Uh4OPjVzleXplbhQPVyBOzmnie-7AwmYYzwfnn-MQ";
 
 export const partsData = [
      {
