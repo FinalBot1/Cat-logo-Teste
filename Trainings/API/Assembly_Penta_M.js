@@ -1,5 +1,5 @@
 export const modelFile =
-    "./Files/Penta.glb";
+    "https://nxhautbtejudvzsrytvi.supabase.co/storage/v1/object/sign/niagara_storage/Trainings/Penta.glb?token=eyJraWQiOiI1NTEyNjllMi04YzlhLTQ4MTAtOGI2Yi1jNWI5Mzg3YWVmNDUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJuaWFnYXJhX3N0b3JhZ2UvVHJhaW5pbmdzL1BlbnRhLmdsYiIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc5Mzg4MTIsImV4cCI6MjQxODY1ODgxMn0.y6sz5s0jiuaAvXevCGFC30D3XRiVVPjbH3uWLMkeH1XXzYeA2hmufy5TqbHJBdDENlaeAru2RVD1Zzjkz5W-WA";
 
 export const startScreen = {
 
