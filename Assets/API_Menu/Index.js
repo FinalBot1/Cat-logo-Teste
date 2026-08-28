@@ -41,7 +41,7 @@ export const catalogo = [
         montagem:"Trainings/AS3A_M_TR.html",
         desmontagem:"Trainings/AS3A_D_TR.html",
 
-        catalogo3D:"Assemblies/CH5_3D1.html"
+        catalogo3D:"Assemblies/CH5_3D.html"
     },
 
     {
