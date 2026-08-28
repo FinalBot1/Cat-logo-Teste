@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<style>
+    html{ visibility:hidden; }
+</style>
+<script>
+(function(){
+
+    var caminhoLogin = "Login.html";
+
+    if (sessionStorage.getItem("niagaraLogado") === "1") {
+        document.documentElement.style.visibility = "visible";
+    } else {
+        window.location.href = caminhoLogin;
+    }
+
+})();
+</script>
+
+<title>Niagara - Catálogo Eletrônico</title>
+
+<link rel="icon" href="./Assets/Imagens/favicon.ico">
+
+<style>
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background-color:#f5f5f5;
+}
+
+#logo{
+    position:absolute;
+    top:10px;
+    left:1.76vw;
+    width:20vw;
+    z-index:1000;
+}
+
+#logo img{
+    width:80%;
+    height:auto;
+    display:block;
+}
+
+#logo a{
+    display:block;
+}
+
+#subtitulo{
+    position:absolute;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1.8vw; 
+
+    font-weight:600;
+
+    line-height:1;
+
+    color:#000000;
+
+    white-space:nowrap;
+
+    z-index:1000;
+}
+
+#titulo{
+    position:absolute;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    font-size:2.1vw;
+    font-weight:700;
+    line-height:1;
+
+    color:#00A859;
+
+    white-space:nowrap;
+
+    z-index:1000;
+}
+
+#menu{
+
+    position:absolute;
+
+    left:1.76vw;
+
+    width:calc(50vw - 1.76vw);
+
+    z-index:1000;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    box-sizing:border-box;
+
+    background:transparent;
+
+    scrollbar-width:thin;
+    scrollbar-color:#00A859 transparent;
+
+    direction:rtl;
+}
+
+#imageMenu img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+#menuLista{
+
+    direction:ltr;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:15px;
+}
+
+.itemCatalogo{
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1.1vw;
+
+    padding:12px;
+
+    margin-bottom:8px;
+
+    cursor:pointer;
+
+    transition:background 0.15s ease;
+}
+
+.itemCatalogo:hover{
+
+    background:#d8f0e0;
+}
+
+.itemCatalogo.selected{
+
+    background:#bde7ca;
+
+    font-weight:600;
+}
+
+#menu img{
+    width:100%;
+    height:100%;
+    display:block;
+
+    opacity:1;
+
+    transition:
+        opacity 0.15s ease;
+}
+
+#imageMenu{
+    position:absolute;
+    z-index:1000;
+    visibility:hidden;
+}
+
+#imageMenu{
+    position:absolute;
+    z-index:1000;
+    visibility:hidden;
+
+    overflow:hidden;
+}
+
+#imageMenu img{
+
+    opacity:0;
+
+    transition:opacity 0.25s ease;
+}
+
+#imageMenuButtons{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:2%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    gap:5vw;
+
+    z-index:2000;
+}
+
+#grupoTreinamento{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+    gap:0;
+
+    width:max-content;
+}
+
+#grupoTreinamento button + button{
+    margin-top:2px;
+}
+
+#grupoTreinamento button{
+
+    box-sizing:border-box;
+}
+
+#imageMenuButtons > div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+#btnTreinamento,
+#btnCatalogo3D,
+#btnMontar,
+#btnDesmontar{
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1vw;
+
+    font-weight:600;
+
+    border:none;
+
+    border-radius:0.4vw;
+
+    cursor:pointer;
+
+    color:white;
+
+    padding:0.7vw 1.8vw;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#btnTreinamento{
+
+    background:#0078D4;
+
+    box-shadow:
+        0 0 0 rgba(0,120,212,0);
+}
+
+#btnCatalogo3D{
+
+    background:#00A859;
+
+    box-shadow:
+        0 0 0 rgba(0,168,89,0);
+}
+
+#btnMontar{
+
+    background:#0078D4;
+
+    box-shadow:
+        0 0 0 rgba(0,120,212,0);
+}
+
+#btnDesmontar{
+
+    background:#0078D4;
+
+    box-shadow:
+        0 0 0 rgba(0,120,212,0);
+}
+
+#btnTreinamento:hover,
+#btnMontar:hover,
+#btnDesmontar:hover{
+
+    transform:scale(1.08);
+
+    filter:brightness(1.25);
+
+    box-shadow:
+        0 0 15px rgba(0,168,89,0.7);
+}
+
+#btnCatalogo3D:hover{
+
+    transform:scale(1.08);
+
+    filter:brightness(1.25);
+
+    box-shadow:
+        0 0 15px rgba(0,120,212,0.7);
+}
+
+
+#btnInfo3D,
+#btnContato3D,
+#btnTema3D{
+
+    position:absolute;
+
+    z-index:1000;
+
+    cursor:pointer;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+#btnInfo3D:hover,
+#btnContato3D:hover,
+#btnTema3D:hover{
+    filter:brightness(1.8);
+    transform:scale(1.05);
+}
+
+#btnInfo3D img,
+#btnContato3D img,
+#btnTema3D img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+#btnInfo3D,
+#btnContato3D{
+    z-index:1001;
+}
+
+#btnInfo3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:10px;
+    right:1vw;
+}
+
+#btnContato3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.8vw
+    );
+
+    right:1vw;
+}
+
+#btnTema3D{
+    width:7vw;
+    height:2.5vw;
+
+    top:10px;
+
+    right:calc(
+        1vw +
+        7vw +
+        2vw
+    );
+}
+
+#revInfo{
+
+    position:absolute;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.3vw
+    );
+
+    right:1vw;
+
+    width:9.1vw;
+
+    text-align:center;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:0.65vw;
+
+    line-height:1.2;
+
+    color:#5f5f5f;
+
+    z-index:1000;
+
+    user-select:none;
+}
+
+#splashScreen{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background-color:#ffffff;
+
+    z-index:999999;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:opacity 0.5s ease;
+}
+
+#splashScreen img{
+
+    position:absolute;
+
+    width:60%;
+    height:auto;
+
+    opacity:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="splashScreen">
+
+    <img
+        id="splashImg1"
+        src="./Assets/Imagens/SplashScreen.png"
+        alt="">
+
+    <img
+        id="splashImg2"
+        src="./Assets/Imagens/SplashScreen2.png"
+        alt="">
+
+</div>
+
+<div id="logo">
+    <a
+        href="https://www.niagara.com.br"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <img
+            src="./Assets/Imagens/logo-niagara.png"
+            alt="Niagara">
+
+    </a>
+</div>
+
+<div id="subtitulo">
+    DPM - PLATAFORMA DIGITAL DE PRODUTOS E MANUTENÇÃO
+</div>
+
+<div id="titulo">
+    VÁLVULAS PARA ALUMINA
+</div>
+
+<div id="btnInfo3D">
+    <img
+        id="imgInfo3D"
+        src="./Assets/Botoes/Info.gif"
+        alt="">
+</div>
+
+<div id="btnContato3D">
+    <img
+        id="imgContato3D"
+        src="./Assets/Botoes/Contato.gif"
+        alt="">
+</div>
+
+<div id="btnTema3D">
+    <img
+        id="imgTema3D"
+        src="./Assets/Botoes/Tema.gif"
+        alt="">
+</div>
+
+<div id="menu">
+    <div id="menuLista"></div>
+</div>
+
+<div id="imageMenu">
+
+    <img
+        id="imgImageMenu"
+        alt="">
+
+<div id="imageMenuButtons">
+
+    <div id="grupoTreinamento">
+
+        <button id="btnMontar">
+            Montar
+        </button>
+
+        <button id="btnDesmontar">
+            Desmontar
+        </button>
+
+        <button id="btnTreinamento">
+            Treinamento
+        </button>
+
+    </div>
+
+    <button id="btnCatalogo3D">
+        Catálogo 3D
+    </button>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { catalogo }
+from "./Assets/API_Menu/Index.js";
+
+    const menuLista =
+    document.getElementById("menuLista");
+
+const menu =
+    document.getElementById("menu");
+
+menu.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        if(imagemTravada) return;
+
+        if(infoTravado) return;
+
+        if(contatoTravado) return;
+
+        mostrarImagemInicial();
+
+
+    }
+);    
+
+const imgImageMenu =
+    document.getElementById("imgImageMenu");
+
+let timeoutFadeImagem = null;
+
+function trocarImagemComFade(novoSrc){
+
+    if(imgImageMenu.getAttribute("data-src-atual") === novoSrc){
+        return;
+    }
+
+    imgImageMenu.setAttribute("data-src-atual", novoSrc);
+
+    if(timeoutFadeImagem){
+        clearTimeout(timeoutFadeImagem);
+    }
+
+    imgImageMenu.style.opacity = "0";
+
+    timeoutFadeImagem = setTimeout(()=>{
+
+        imgImageMenu.src = novoSrc;
+
+        imgImageMenu.onload = ()=>{
+
+            atualizarLayoutTreinamento();
+
+            imgImageMenu.style.opacity = "1";
+
+        };
+
+    }, 250);
+
+}
+
+function mostrarImageMenu(imgSrc){
+
+    imageMenu.style.visibility = "visible";
+    imageMenu.style.opacity = "1";
+    imageMenu.style.pointerEvents = "auto";
+
+    mostrarBotoesImageMenu();
+
+    trocarImagemComFade(imgSrc);
+}
+
+function esconderImageMenu(){
+
+    imageMenu.style.visibility = "hidden";
+    imageMenu.style.opacity = "0";
+    imageMenu.style.pointerEvents = "none";
+
+    esconderBotoesImageMenu();
+}
+
+function mostrarImagemInicial(){
+
+    imageMenu.style.visibility = "visible";
+
+    trocarImagemComFade(IMAGEM_INICIAL);
+
+    esconderBotoesImageMenu();
+}
+
+let itemSelecionado = null;
+
+let itemAtual = null;
+
+let imagemTravada = false;    
+
+const IMAGEM_INICIAL =
+    "./Assets/Imagens/First_page.gif";
+
+const IMAGEM_INFO =
+    "./Assets/Imagens/Info_Img.gif";
+
+const IMAGEM_CONTATO =
+    "./Assets/Imagens/Contato_Img.gif";
+
+let infoTravado = false;
+
+let contatoTravado = false;
+
+
+
+
+mostrarImagemInicial();
+
+catalogo.forEach(item=>{
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "itemCatalogo";
+
+    div.textContent =
+        item.texto;
+
+    div.addEventListener("mouseenter",()=>{
+  
+
+    if(imagemTravada) return;
+
+    infoTravado = false;
+
+    contatoTravado = false;
+
+    mostrarImageMenu(item.imagem);
+
+    imgImageMenu.onload =
+        atualizarLayoutTreinamento;
+
+});
+
+    div.addEventListener("mouseleave",()=>{
+
+    if(imagemTravada) return;
+
+    if(infoTravado) return;
+
+    if(contatoTravado) return;
+
+    mostrarImagemInicial();
+
+});
+    div.addEventListener("click",(e)=>{
+
+        e.stopPropagation();
+
+        imagemTravada = true;
+
+        itemAtual = item;
+
+mostrarImageMenu(item.imagem);
+
+imgImageMenu.onload =
+    atualizarLayoutTreinamento;
+
+        if(itemSelecionado){
+
+            itemSelecionado.classList
+            .remove("selected");
+        }
+
+        div.classList.add(
+            "selected"
+        );
+
+        itemSelecionado = div;
+
+    });
+
+    menuLista.appendChild(div);
+
+});
+
+document.addEventListener("click",(e)=>{
+
+    const clicouNoMenu =
+        e.target.closest(".itemCatalogo");
+
+    const clicouNaImagem =
+        e.target.closest("#imageMenu");
+
+    if(
+        clicouNoMenu ||
+        clicouNaImagem
+    ){
+        return;
+    }
+
+    imagemTravada = false;
+
+infoTravado = false;
+
+contatoTravado = false;
+
+itemAtual = null;
+
+mostrarImagemInicial();
+
+if(itemSelecionado){
+
+    itemSelecionado.classList
+        .remove("selected");
+
+    itemSelecionado = null;
+}
+
+    if(itemSelecionado){
+
+        itemSelecionado.classList
+        .remove("selected");
+
+        itemSelecionado = null;
+    }
+
+});
+
+function atualizarLayoutTreinamento(){
+
+    const logo =
+        document.getElementById("logo");
+
+    const titulo =
+        document.getElementById("titulo");
+
+    const subtitulo =
+        document.getElementById("subtitulo");
+
+    const menu =
+        document.getElementById("menu");
+
+    const imageMenu =
+        document.getElementById("imageMenu");
+
+    const btnTema =
+        document.getElementById("btnTema3D");
+
+    const logoRect =
+        logo.getBoundingClientRect();
+
+    const temaRect =
+        btnTema.getBoundingClientRect();
+
+    const centroArea =
+    logoRect.right +
+    (
+        (temaRect.left - logoRect.right) / 2
+    );
+
+subtitulo.style.left =
+    (centroArea - subtitulo.offsetWidth / 2) + "px";
+
+titulo.style.left =
+    (centroArea - titulo.offsetWidth / 2) + "px";
+
+const espacamento =
+    0.2 * titulo.offsetHeight;
+
+const alturaTotal =
+    subtitulo.offsetHeight +
+    espacamento +
+    titulo.offsetHeight;
+
+const topoGrupo =
+    logoRect.top +
+    (logoRect.height / 2) -
+    (alturaTotal / 2);
+
+subtitulo.style.top =
+    topoGrupo + "px";
+
+titulo.style.top =
+    (
+        topoGrupo +
+        subtitulo.offsetHeight +
+        espacamento
+    ) + "px";
+
+    const folga =
+        logoRect.height * 0.12;
+
+    const menuTop =
+        logoRect.bottom +
+        folga;
+
+    menu.style.top =
+        menuTop + "px";
+
+    const folgaInferior =
+        logoRect.top;
+
+    const menuHeight =
+        (
+            window.innerHeight -
+            menuTop -
+            folgaInferior
+        );
+
+    menu.style.height =
+        menuHeight + "px";
+
+    const img =
+        document.getElementById("imgImageMenu");
+
+    const atualizarImageMenu = () => {
+
+    const aspectRatio =
+        img.naturalWidth > 0 &&
+        img.naturalHeight > 0
+            ? img.naturalWidth / img.naturalHeight
+            : 1.6;
+
+    const imageMenuWidth =
+        menuHeight * aspectRatio;
+
+    imageMenu.style.height =
+        menuHeight + "px";
+
+    imageMenu.style.width =
+        imageMenuWidth + "px";
+
+    imageMenu.style.top =
+        menuTop + "px";
+
+    imageMenu.style.left =
+        (window.innerWidth / 2) + "px";
+
+const btns =
+    document.querySelectorAll(
+        "#btnTreinamento, #btnCatalogo3D, #btnMontar, #btnDesmontar"
+    );
+
+const tamanhoBase =
+    menuHeight * 0.03;
+
+btns.forEach(btn=>{
+
+    btn.style.fontSize =
+        tamanhoBase + "px";
+
+    btn.style.padding =
+        (tamanhoBase * 0.6) + "px " +
+        (tamanhoBase * 1.8) + "px";
+});
+
+    sincronizarLarguraBotoesTreinamento();
+
+
+};
+
+    if(img.complete){
+        atualizarImageMenu();
+    }else{
+        img.onload =
+            atualizarImageMenu;
+    }
+}
+
+window.addEventListener(
+    "resize",
+    atualizarLayoutTreinamento
+);
+
+
+window.addEventListener(
+    "load",
+    atualizarLayoutTreinamento
+);
+
+
+
+const btnInfo3D =
+    document.getElementById("btnInfo3D");
+
+const imgInfo3D =
+    document.getElementById("imgInfo3D");
+
+btnInfo3D.addEventListener(
+    "mouseenter",
+    ()=>{
+
+        imgInfo3D.src =
+            "./Assets/Botoes/Info_highlight.gif";
+
+        if(
+            imagemTravada ||
+            infoTravado ||
+            contatoTravado
+        ){
+            return;
+        }
+
+        imageMenu.style.visibility =
+            "visible";
+
+        trocarImagemComFade(IMAGEM_INFO);
+
+    }
+);
+
+btnInfo3D.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        imgInfo3D.src =
+            "./Assets/Botoes/Info.gif";
+
+        if(
+            imagemTravada ||
+            infoTravado ||
+            contatoTravado
+        ){
+            return;
+        }
+
+        mostrarImagemInicial();
+
+    }
+);
+
+btnInfo3D.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        infoTravado = true;
+
+        contatoTravado = false;
+
+        imagemTravada = false;
+
+        imageMenu.style.visibility =
+            "visible";
+
+        trocarImagemComFade(IMAGEM_INFO);
+
+            esconderBotoesImageMenu();
+
+        if(itemSelecionado){
+
+            itemSelecionado.classList
+                .remove("selected");
+
+            itemSelecionado = null;
+        }
+    }
+);
+
+
+
+const btnContato3D =
+    document.getElementById("btnContato3D");
+
+const imgContato3D =
+    document.getElementById("imgContato3D");
+
+btnContato3D.addEventListener(
+    "mouseenter",
+    ()=>{
+
+        imgContato3D.src =
+            "./Assets/Botoes/Contato_highlight.gif";
+
+        if(
+            imagemTravada ||
+            infoTravado ||
+            contatoTravado
+        ){
+            return;
+        }
+
+        imageMenu.style.visibility =
+            "visible";
+
+        trocarImagemComFade(IMAGEM_CONTATO);
+
+    }
+);
+
+btnContato3D.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        imgContato3D.src =
+            "./Assets/Botoes/Contato.gif";
+
+        if(
+            imagemTravada ||
+            infoTravado ||
+            contatoTravado
+        ){
+            return;
+        }
+
+        mostrarImagemInicial();
+
+    }
+);
+
+btnContato3D.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        contatoTravado = true;
+
+        infoTravado = false;
+
+        imagemTravada = false;
+
+        imageMenu.style.visibility =
+            "visible";
+
+        trocarImagemComFade(IMAGEM_CONTATO);
+
+            esconderBotoesImageMenu();
+
+        if(itemSelecionado){
+
+            itemSelecionado.classList
+                .remove("selected");
+
+            itemSelecionado = null;
+        }
+    }
+);
+
+function mostrarBotoesImageMenu(){
+
+    document.getElementById("imageMenuButtons")
+        .style.display = "flex";
+}
+
+function esconderBotoesImageMenu(){
+
+    document.getElementById("imageMenuButtons")
+        .style.display = "none";
+}
+
+
+
+const imgTema3D =
+    document.getElementById("imgTema3D");
+
+function atualizarImagemTema(){
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    imgTema3D.src =
+        temaEscuro
+            ? "./Assets/Botoes/Tema_n.gif"
+            : "./Assets/Botoes/Tema.gif";
+}
+
+function aplicarTema(){
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    const cor =
+        temaEscuro
+            ? "#6E6E6E"
+            : "#f5f5f5";
+
+    document.body.style.backgroundColor =
+        cor;
+
+    document.documentElement.style.backgroundColor =
+        cor;
+
+    atualizarImagemTema();
+}
+
+aplicarTema();
+
+document.getElementById("btnTema3D")
+.addEventListener("mouseenter",()=>{
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    imgTema3D.src =
+        temaEscuro
+            ? "./Assets/Botoes/Tema_highlight_n.gif"
+            : "./Assets/Botoes/Tema_highlight.gif";
+
+});
+
+document.getElementById("btnTema3D")
+.addEventListener("mouseleave",()=>{
+
+    atualizarImagemTema();
+
+});
+
+document.getElementById("btnTema3D")
+.addEventListener("click",()=>{
+
+    const temaAtual =
+        localStorage.getItem("temaEscuro") === "true";
+
+    localStorage.setItem(
+        "temaEscuro",
+        !temaAtual
+    );
+
+    aplicarTema();
+
+});
+
+const btnTreinamento =
+    document.getElementById("btnTreinamento");
+
+const btnMontar =
+    document.getElementById("btnMontar");
+
+const btnDesmontar =
+    document.getElementById("btnDesmontar");
+
+const btnCatalogo3D =
+    document.getElementById("btnCatalogo3D");
+
+const grupoTreinamento =
+    document.getElementById("grupoTreinamento");
+
+
+function sincronizarLarguraBotoesTreinamento(){
+
+    const largura =
+        btnTreinamento.offsetWidth;
+
+    btnMontar.style.width =
+        largura + "px";
+
+    btnDesmontar.style.width =
+        largura + "px";
+}
+
+
+function recolherBotoesTreinamento(){
+
+    btnTreinamento.textContent =
+        "Treinamento";
+
+    sincronizarLarguraBotoesTreinamento();
+
+    btnMontar.style.display =
+        "none";
+
+    btnDesmontar.style.display =
+        "none";
+}
+
+
+function expandirBotoesTreinamento(){
+
+    btnTreinamento.textContent =
+        "Lubrificação";
+
+    sincronizarLarguraBotoesTreinamento();
+
+    btnMontar.style.display =
+        "block";
+
+    btnDesmontar.style.display =
+        "block";
+}
+
+
+btnMontar.style.display =
+    "none";
+
+btnDesmontar.style.display =
+    "none";
+
+
+btnTreinamento.addEventListener(
+    "mouseenter",
+    ()=>{
+
+        if(!itemAtual) return;
+
+        expandirBotoesTreinamento();
+
+    }
+);
+
+
+imageMenu.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        recolherBotoesTreinamento();
+
+    }
+);
+
+
+btnTreinamento.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        if(!itemAtual) return;
+
+        window.location.href =
+            itemAtual.lubrificacao;
+
+    }
+);
+
+
+btnMontar.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        if(!itemAtual) return;
+
+        window.location.href =
+            itemAtual.montagem;
+
+    }
+);
+
+
+btnDesmontar.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        if(!itemAtual) return;
+
+        window.location.href =
+            itemAtual.desmontagem;
+
+    }
+);
+
+
+btnCatalogo3D.addEventListener(
+    "click",
+    (e)=>{
+
+        e.stopPropagation();
+
+        if(!itemAtual) return;
+
+        window.location.href =
+            itemAtual.catalogo3D;
+
+    }
+);
+
+</script>
+<script>
+(function(){
+
+    if (sessionStorage.getItem("SplashCatalogoJaExibido")) {
+
+        document.getElementById("splashScreen").style.display = "none";
+        return;
+
+    }
+
+    sessionStorage.setItem("SplashCatalogoJaExibido", "1");
+
+    var splashScreen =
+        document.getElementById("splashScreen");
+
+    var splashImg1 =
+        document.getElementById("splashImg1");
+
+    var splashImg2 =
+        document.getElementById("splashImg2");
+
+    requestAnimationFrame(function(){
+
+        splashImg1.style.transition = "opacity 1s ease";
+        splashImg1.style.opacity = "1";
+
+    });
+
+    setTimeout(function(){
+
+        splashImg1.style.transition = "none";
+        splashImg2.style.transition = "none";
+
+        splashImg1.style.opacity = "0";
+        splashImg2.style.opacity = "1";
+
+    }, 800);
+
+    setTimeout(function(){
+
+        splashScreen.style.transition = "opacity 0.5s ease";
+        splashScreen.style.opacity = "0";
+        splashScreen.style.pointerEvents = "none";
+
+    }, 3000);
+
+    setTimeout(function(){
+
+        splashScreen.style.display = "none";
+
+    }, 3500);
+
+})();
+</script>
+</body>
+</html>
