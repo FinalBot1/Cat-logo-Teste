@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<title>Niagara - Catálogo Eletrôncio</title>
+
+<link rel="icon" type="image/png" href="./Files/Imagens/favicon.ico">
+
+<style>
+    html{ visibility:hidden; }
+</style>
+<script>
+(function(){
+
+    // Ajuste o caminho abaixo conforme a profundidade da pasta
+    // deste arquivo em relação à raiz do projeto.
+    var caminhoLogin = "../Login.html";
+
+    if (sessionStorage.getItem("niagaraLogado") === "1") {
+        document.documentElement.style.visibility = "visible";
+    } else {
+        window.location.href = caminhoLogin;
+    }
+
+})();
+</script>
+
+<style>
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    background-color:#f5f5f5;
+}
+
+#viewer3d{
+    position:absolute;
+    top:0;
+    right:0;
+    width:80vw;
+    height:100vh;
+}
+
+#logo{
+    position:absolute;
+    top:10px;
+    left:1.76vw;
+    width:20vw;
+    z-index:1000;
+}
+
+#logo img{
+    width:80%;
+    height:auto;
+    display:block;
+}
+
+#logo a{
+    display:block;
+}
+
+#titulo{
+    position:absolute;
+
+    top:calc(
+        10px +
+        (20vw * 0.8 * 359 / 1023) +
+        ((20vw * 0.8 * 359 / 1023) * 0.12)
+    );
+
+    left:1.76vw;     
+    width:30vw;      
+
+    text-align:left; 
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    font-size:2.3vw;
+    font-weight:700;
+    line-height:1;
+    color:blue;
+
+    z-index:1000;
+}
+
+#controls{
+
+    position:absolute;
+    left:0;
+    bottom:20px;
+
+    width:20vw;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:9.4%;
+
+    z-index:1000;
+}
+
+#controls button{
+
+    width:36.5%;
+    aspect-ratio:140/76;
+
+    padding:0;
+    border:none;
+    background:none;
+
+    cursor:pointer;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+#controls button:hover{
+    filter:brightness(1.8);
+    transform:scale(1.05);
+}
+
+#controls button img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:fill;
+    pointer-events:none;
+}
+
+
+
+#PartList{
+    position:absolute;
+
+    left:1.76vw;
+
+    width:20.5vw;
+
+    top:calc(
+        10px +
+        (20vw * 0.8 * 359 / 1023) +
+        ((20vw * 0.8 * 359 / 1023) * 0.12) +
+        2.3vw +
+        0.5vw
+    );
+
+    bottom:0.5vw;
+
+      background-color:transparent;
+
+    z-index:1000;
+    box-sizing:border-box;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+
+pointer-events: auto;
+}
+
+#PartList-header{
+    flex-shrink:0;
+
+    background-color:#90EE90;
+
+    padding:0.5vw 0.8vw;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    font-size:1.1vw;
+    font-weight:700;
+    color:#000000;
+
+    text-align:center;
+}
+
+#PartList-scroll{
+    flex:1;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    direction:rtl;
+}
+
+#PartList-body{
+    direction:ltr;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#PartList-body::-webkit-scrollbar-track{
+    background:#002244;
+}
+
+#PartList-body::-webkit-scrollbar-thumb{
+    background:#4a90d9;
+    border-radius:6px;
+}
+
+.partList-item{
+    direction:ltr;
+
+    padding:0.45vw 0.8vw;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    font-size:1vw;
+    color:#000000;
+
+    border-bottom:1px solid rgba(0,0,0,0.08);
+
+    box-sizing:border-box;
+}
+
+.partList-item:hover {
+    background-color: #c5e3ff !important;
+    cursor: pointer;
+}
+
+
+
+
+#textoTreinamento{
+    position:absolute;
+
+    left:1.76vw;
+
+    width:30vw;
+    height:auto;
+
+    z-index:1000;
+}
+
+#textoTreinamento img{
+    width:100%;
+    height:auto;
+    display:block;
+
+    opacity:1;
+
+    transition:
+        opacity 0.15s ease;
+}
+
+
+
+#btnInfo{
+    position:absolute;
+
+    left:20.00vw;
+
+    width:2vw;
+    height:2vw;
+
+    z-index:1000;
+
+    cursor:pointer;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+#btnInfo:hover{
+    filter:brightness(1.8);
+    transform:scale(1.05);
+}
+
+#btnInfo img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+
+
+#btnHome3D,
+#btnReset3D,
+#btnMontar3D,
+#btnConjunto3D,
+#btnDois2D3D,
+#btnAjuda3D,
+#btnTema3D{
+
+    position:absolute;
+
+    z-index:1000;
+
+    cursor:pointer;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+#btnHome3D:hover,
+#btnReset3D:hover,
+#btnMontar3D:hover,
+#btnConjunto3D:hover,
+#btnDois2D3D:hover,
+#btnAjuda3D:hover,
+#btnTema3D:hover{
+    filter:brightness(1.8);
+    transform:scale(1.05);
+}
+
+#btnHome3D img,
+#btnReset3D img,
+#btnMontar3D img,
+#btnConjunto3D img,
+#btnDois2D3D img,
+#btnAjuda3D img,
+#btnTema3D img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+#btnHome3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:10px;
+    right:1vw;
+}
+
+#btnReset3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.5vw
+    );
+
+    right:1vw;
+}
+
+#btnMontar3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw
+    );
+
+    right:1vw;
+}
+
+#btnConjunto3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw
+    );
+
+    right:1vw;
+}
+
+#btnDois2D3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw
+    );
+
+    right:1vw;
+}
+
+#btnAjuda3D{
+    width:9.1vw;
+    height:3.9vw;
+
+    top:calc(
+        10px +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw +
+        3.9vw +
+        0.5vw
+    );
+
+    right:1vw;
+}
+
+#btnTema3D{
+    width:7vw;
+    height:2.5vw;
+
+    top:10px;
+
+    right:calc(
+        1vw +
+        7vw +
+        2vw
+    );
+}
+
+
+
+#slider-container {
+    position: absolute;
+    bottom: 20px;         
+    right: 1vw;           
+    width: 39vw;          
+    z-index: 1001;
+    display: none;        
+    flex-direction: column; 
+    gap: 8px;             
+    align-items: center;
+    pointer-events: auto; 
+}
+
+#slider-texto {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.9vw;     
+    color: #003366;       
+    font-weight: 600;
+    text-align: center;
+    user-select: none;    
+}
+
+#slider3d {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #4a90d9;
+}
+
+#slider-porcentagem {
+    width: 100%;
+    text-align: right;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.9vw;
+    color: #003366;
+    font-weight: 600;
+    user-select: none;
+    pointer-events: none;
+}
+
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "../Modules/build/three.module.js",
+    "three/examples/jsm/": "../Modules/examples/jsm/"
+  }
+}
+</script>
+
+</head>
+
+<body>
+
+<div id="logo">
+    <a
+        href="https://www.niagara.com.br"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <img
+            src="../Assets/Imagens/logo-niagara.png"
+            alt="Niagara">
+
+    </a>
+</div>
+
+<div id="titulo">
+    AS3A-285-P.R.
+</div>
+
+<div id="PartList">
+    <div id="PartList-header">Denominação</div>
+
+    <div id="PartList-scroll">
+        <div id="PartList-body"></div>
+    </div>
+</div>
+
+<div id="viewer3d"></div>
+
+<div id="btnInfo">
+    <img
+        id="imgInfo"
+        src="../Assets/Botoes/Informação_2.gif"
+        alt="">
+</div>
+
+<div id="btnHome3D">
+    <img
+        id="imgHome3D"
+        src="../Assets/Botoes/Home.gif"
+        alt="">
+</div>
+
+<div id="btnReset3D">
+    <img
+        id="imgReset3D"
+        src="../Assets/Botoes/Reset.gif"
+        alt="">
+</div>
+
+<div id="btnMontar3D">
+    <img
+        id="imgMontar3D"
+        src="../Assets/Botoes/Explode.gif"
+        alt="">
+</div>
+
+<div id="btnConjunto3D">
+    <img
+        id="imgConjunto3D"
+        src="../Assets/Botoes/Treinamento.gif"
+        alt="">
+</div>
+
+<div id="btnDois2D3D">
+    <img
+        id="imgDois2D3D"
+        src="../Assets/Botoes/2D.gif"
+        alt="">
+</div>
+
+<div id="btnAjuda3D">
+    <img
+        id="imgAjuda3D"
+        src="../Assets/Botoes/Help.gif"
+        alt="">
+</div>
+
+<div id="btnTema3D">
+    <img
+        id="imgTema3D"
+        src="../Assets/Botoes/Tema.gif"
+        alt="">
+</div>
+
+<div id="slider-container">
+    <div id="slider-texto">Para explodir o conjunto mova o botão abaixo</div>
+    <div id="slider-porcentagem">0%</div>
+    <input type="range" id="slider3d" min="0" max="100" value="0">
+</div>
+
+<script>
+
+function atualizarLayoutTreinamento(){
+
+    const titulo =
+        document.getElementById("titulo");
+
+    const controles =
+        document.getElementById("controls");
+
+    const imgTreinamento =
+        document.getElementById("textoTreinamento");
+
+    // Estes elementos não existem nesta página (fazem parte de uma tela
+    // de treinamento que não é usada aqui) — sem eles, não há como
+    // calcular o layout abaixo, então saímos com segurança.
+    if(!titulo || !controles || !imgTreinamento){
+        alinharBtnInfo();
+        return;
+    }
+
+    const escala =
+        window.innerWidth / 1920;
+
+    const espaco =
+        5 * escala;
+
+    const tituloBottom =
+        titulo.offsetTop +
+        titulo.offsetHeight;
+
+    const controlesTop =
+        controles.offsetTop;
+
+    const topoImagem =
+        tituloBottom +
+        espaco;
+
+    imgTreinamento.style.top =
+        topoImagem + "px";
+
+    const imagemHeight =
+        imgTreinamento.offsetHeight;
+
+    const espacoInferior =
+        controlesTop -
+        (topoImagem + imagemHeight);
+
+    if(espacoInferior > 0){
+
+        imgTreinamento.style.height =
+            (imagemHeight +
+            (espacoInferior - espaco) / 2)
+            + "px";
+
+        imgTreinamento.style.width =
+            "30vw";
+    }
+
+    alinharBtnInfo();
+    
+}
+
+function alinharBtnInfo(){
+
+    const titulo =
+        document.getElementById("titulo");
+
+    const btnInfo =
+        document.getElementById("btnInfo");
+
+    const rect =
+        titulo.getBoundingClientRect();
+
+    const centroTitulo =
+        rect.top + (rect.height / 2);
+
+    const metadeBotao =
+        btnInfo.offsetHeight / 2;
+
+    btnInfo.style.top =
+        (centroTitulo - metadeBotao) + "px";
+}
+
+window.addEventListener("load", alinharBtnInfo);
+window.addEventListener("resize", alinharBtnInfo);
+
+window.addEventListener(
+    "load",
+    atualizarLayoutTreinamento
+);
+
+window.addEventListener(
+    "resize",
+    atualizarLayoutTreinamento
+);
+
+
+const imgHome3D =
+    document.getElementById("imgHome3D");
+
+document.getElementById("btnHome3D")
+.addEventListener("mouseenter",()=>{
+
+    imgHome3D.src =
+    "../Assets/Botoes/Home_highlight.gif";
+
+});
+
+document.getElementById("btnHome3D")
+.addEventListener("click",()=>{
+
+    window.location.href =
+        "../Catalogo.html";
+
+});
+
+document.getElementById("btnHome3D")
+.addEventListener("mouseleave",()=>{
+
+    imgHome3D.src =
+    "../Assets/Botoes/Home.gif";
+
+});
+
+
+const imgReset3D =
+    document.getElementById("imgReset3D");
+
+document.getElementById("btnReset3D")
+.addEventListener("mouseenter",()=>{
+
+    imgReset3D.src =
+    "../Assets/Botoes/Reset_highlight.gif";
+
+});
+
+document.getElementById("btnReset3D")
+.addEventListener("click",()=>{
+
+    location.reload();
+
+});
+
+document.getElementById("btnReset3D")
+.addEventListener("mouseleave",()=>{
+
+    imgReset3D.src =
+    "../Assets/Botoes/Reset.gif";
+
+});
+
+
+const imgMontar3D = document.getElementById("imgMontar3D");
+const sliderContainer = document.getElementById("slider-container");
+const sliderTexto = document.getElementById("slider-texto");
+const slider3d = document.getElementById("slider3d");
+
+
+document.getElementById("btnMontar3D").addEventListener("mouseenter", () => {
+    imgMontar3D.src = "../Assets/Botoes/Explode_highlight.gif";
+});
+
+document.getElementById("btnMontar3D").addEventListener("mouseleave", () => {
+    imgMontar3D.src = "../Assets/Botoes/Explode.gif";
+});
+
+
+document.getElementById("btnMontar3D").addEventListener("click", () => {
+    if (sliderContainer.style.display === "flex") {
+        sliderContainer.style.display = "none";
+        
+        
+    } else {
+        slider3d.value = 0;              
+        sliderPorcentagem.textContent = "0%";
+        sliderContainer.style.display = "flex";
+        sliderTexto.style.display = "block"; 
+        
+        
+        if (window.afastarCamera3D) {
+            window.afastarCamera3D();
+        }
+    }
+});
+
+
+document.getElementById("btnReset3D").addEventListener("click", () => {
+    sliderContainer.style.display = "none";
+    
+    
+    if (window.resetarCamera3D) {
+        window.resetarCamera3D();
+    }
+
+});
+
+
+const sliderPorcentagem = document.getElementById("slider-porcentagem");
+
+slider3d.addEventListener("input", () => {
+    sliderPorcentagem.textContent = slider3d.value + "%";
+});
+
+slider3d.addEventListener("mousedown", () => {
+    sliderTexto.style.display = "none";
+});
+
+
+slider3d.addEventListener("touchstart", () => {
+    sliderTexto.style.display = "none";
+});
+
+
+const botoesDireitaIDs = ["btnHome3D", "btnReset3D", "btnConjunto3D", "btnDois2D3D", "btnTema3D", "btnAjuda3D"];
+botoesDireitaIDs.forEach(id => {
+    const botao = document.getElementById(id);
+    if (botao) {
+        botao.addEventListener("click", () => {
+            sliderContainer.style.display = "none";
+        });
+    }
+});
+
+
+const imgConjunto3D =
+    document.getElementById(
+        "imgConjunto3D"
+    );
+
+document.getElementById("btnConjunto3D")
+.addEventListener("mouseenter",()=>{
+
+    imgConjunto3D.src =
+        "../Assets/Botoes/Treinamento_highlight.gif";
+
+});
+
+
+document.getElementById("btnConjunto3D")
+.addEventListener("click",()=>{
+
+    window.location.href = "../Trainings/AS3A_D_TR.html";
+
+});
+
+document.getElementById("btnConjunto3D")
+.addEventListener("mouseleave",()=>{
+
+    imgConjunto3D.src =
+        "../Assets/Botoes/Treinamento.gif";
+
+});
+
+
+const imgDois2D3D =
+    document.getElementById(
+        "imgDois2D3D"
+    );
+
+document.getElementById("btnDois2D3D")
+.addEventListener("mouseenter",()=>{
+
+    imgDois2D3D.src =
+        "../Assets/Botoes/2D_highlight.gif";
+
+});
+
+
+document.getElementById("btnDois2D3D")
+.addEventListener("click",()=>{
+
+    window.open("./Files/PDFs/C01.pdf", "_blank");
+
+});
+
+document.getElementById("btnDois2D3D")
+.addEventListener("mouseleave",()=>{
+
+    imgDois2D3D.src =
+        "../Assets/Botoes/2D.gif";
+
+});
+
+
+const imgAjuda3D =
+    document.getElementById("imgAjuda3D");
+
+document.getElementById("btnAjuda3D")
+.addEventListener("mouseenter",()=>{
+
+    imgAjuda3D.src =
+        "../Assets/Botoes/Help_Highlight.gif";
+
+});
+
+document.getElementById("btnAjuda3D")
+.addEventListener("click",()=>{
+
+    window.open("../Assets/Help/Help.pdf", "_blank");
+
+});
+
+document.getElementById("btnAjuda3D")
+.addEventListener("mouseleave",()=>{
+
+    imgAjuda3D.src =
+        "../Assets/Botoes/Help.gif";
+
+});
+
+
+const imgTema3D =
+    document.getElementById("imgTema3D");
+
+function atualizarImagemTema(){
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    imgTema3D.src =
+        temaEscuro
+            ? "../Assets/Botoes/Tema_n.gif"
+            : "../Assets/Botoes/Tema.gif";
+}
+
+function aplicarTema(){
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    const cor =
+        temaEscuro
+            ? "#6E6E6E"
+            : "#f5f5f5";
+
+    document.body.style.backgroundColor =
+        cor;
+
+    document.documentElement.style.backgroundColor =
+        cor;
+
+    if(window.alterarTema3D){
+
+        window.alterarTema3D(
+            temaEscuro
+                ? 0x6E6E6E
+                : 0xf5f5f5
+        );
+
+    }
+
+    atualizarImagemTema();
+}
+
+
+aplicarTema();
+
+document.getElementById("btnTema3D")
+.addEventListener("mouseenter",()=>{
+
+    const temaEscuro =
+        localStorage.getItem("temaEscuro") === "true";
+
+    imgTema3D.src =
+        temaEscuro
+            ? "../Assets/Botoes/Tema_highlight_n.gif"
+            : "../Assets/Botoes/Tema_highlight.gif";
+
+});
+
+document.getElementById("btnTema3D")
+.addEventListener("mouseleave",()=>{
+
+    atualizarImagemTema();
+
+});
+
+document.getElementById("btnTema3D")
+.addEventListener("click",()=>{
+
+    const temaAtual =
+        localStorage.getItem("temaEscuro") === "true";
+
+    localStorage.setItem(
+        "temaEscuro",
+        !temaAtual
+    );
+
+    aplicarTema();
+
+});
+
+</script>
+
+<script type="module" src="API/Three_module_AS3A_3D.js"></script>
+
+</body>
+</html>
