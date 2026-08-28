@@ -1,4 +1,4 @@
-export const modelFile = "./Files/AS4A.glb";
+export const modelFile = "https://nxhautbtejudvzsrytvi.supabase.co/storage/v1/object/sign/niagara_storage/Assemblies/AS4A.glb?token=eyJraWQiOiI1NTEyNjllMi04YzlhLTQ4MTAtOGI2Yi1jNWI5Mzg3YWVmNDUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJuaWFnYXJhX3N0b3JhZ2UvQXNzZW1ibGllcy9BUzRBLmdsYiIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc5Mzg3MDQsImV4cCI6MjQxODY1ODcwNH0.uTSvn4fr334E0ksdF-_QxCw82Dgtm_BnygGajq7oSzEIgNy9dk1NRwUJlrfgfeDM5RXGWM4stBjGO6vw84sw4w";
 
 export const partsData = [
      {
