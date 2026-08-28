@@ -2,7 +2,7 @@ export const catalogo = [
 
     {
         texto:"285 / AS3A - Válvula Passagem Reta - Entrada e Saída Iguais - HC - Classe 150",
-        imagem:"../Assets/Imagens/AS3A_Img_00.gif",
+        imagem:"./Assets/Imagens/AS3A_Img_00.gif",
 
         lubrificacao:"Trainings/AS3A_Lubr.html",
         montagem:"Trainings/AS3A_M_TR.html",
