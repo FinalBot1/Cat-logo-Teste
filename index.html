@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<title>Niagara - Login</title>
+
+<link rel="icon" type="image/png" href="./Assets/Imagens/favicon.ico">
+
+<script src="./Assets/API_Menu/Usuarios.js"></script>
+
+<style>
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background-color:#f5f5f5;
+}
+
+#logo{
+    position:absolute;
+    top:10px;
+    left:1.76vw;
+    width:20vw;
+    z-index:1000;
+}
+
+#logo img{
+    width:80%;
+    height:auto;
+    display:block;
+}
+
+#logo a{
+    display:block;
+}
+
+#subtitulo{
+    position:absolute;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1.8vw;
+
+    font-weight:600;
+
+    line-height:1;
+
+    color:#000000;
+
+    white-space:nowrap;
+
+    z-index:1000;
+}
+
+#titulo{
+    position:absolute;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    font-size:2.1vw;
+    font-weight:700;
+    line-height:1;
+
+    color:#00A859;
+
+    white-space:nowrap;
+
+    z-index:1000;
+}
+
+#loginContainer{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+
+    width:22vw;
+
+    box-sizing:border-box;
+
+    background:#ffffff;
+
+    border-radius:0.6vw;
+
+    box-shadow:0 0.3vw 1.2vw rgba(0,0,0,0.12);
+
+    padding:2.2vw 2.2vw 2vw 2.2vw;
+
+    z-index:1000;
+}
+
+#loginContainer h2{
+
+    margin:0 0 1.4vw 0;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1.3vw;
+
+    font-weight:700;
+
+    color:#00A859;
+
+    text-align:center;
+}
+
+.campoLogin{
+
+    margin-bottom:1.1vw;
+}
+
+.campoLogin label{
+
+    display:block;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:0.85vw;
+
+    font-weight:600;
+
+    color:#5f5f5f;
+
+    margin-bottom:0.4vw;
+}
+
+.campoLogin input{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:0.95vw;
+
+    padding:0.7vw 0.8vw;
+
+    border:1px solid #d0d0d0;
+
+    border-radius:0.35vw;
+
+    outline:none;
+
+    transition:border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.campoLogin input:focus{
+
+    border-color:#00A859;
+
+    box-shadow:0 0 0 0.15vw rgba(0,168,89,0.25);
+}
+
+#btnEntrar{
+
+    width:100%;
+
+    margin-top:0.6vw;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:1vw;
+
+    font-weight:600;
+
+    border:none;
+
+    border-radius:0.4vw;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:#00A859;
+
+    padding:0.8vw 0;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#btnEntrar:hover{
+
+    transform:scale(1.03);
+
+    filter:brightness(1.1);
+
+    box-shadow:0 0 15px rgba(0,168,89,0.5);
+}
+
+#mensagemErro{
+
+    margin:0 0 1.1vw 0;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:0.85vw;
+
+    font-weight:600;
+
+    color:#d93025;
+
+    text-align:center;
+
+    display:none;
+}
+
+
+/* =====================================================================
+   AJUSTE PARA CELULAR EM PÉ (PORTRAIT)
+   Só se aplica a dispositivos sem mouse (touch), via
+   "hover:none / pointer:coarse" — no computador (mesmo redimensionando
+   a janela) e no celular em paisagem nada muda, pois os valores acima
+   continuam sendo usados normalmente.
+   ===================================================================== */
+@media (hover:none) and (pointer:coarse) and (orientation:portrait){
+
+    #loginContainer{
+
+        width:82vw;
+
+        border-radius:2vw;
+
+        box-shadow:0 1vw 4vw rgba(0,0,0,0.12);
+
+        padding:6vw 6vw 5vw 6vw;
+    }
+
+    #loginContainer h2{
+
+        margin:0 0 4vw 0;
+
+        font-size:5vw;
+    }
+
+    .campoLogin{
+
+        margin-bottom:4vw;
+    }
+
+    .campoLogin label{
+
+        font-size:3.6vw;
+
+        margin-bottom:1.6vw;
+    }
+
+    .campoLogin input{
+
+        font-size:4vw;
+
+        padding:2.8vw 3vw;
+
+        border-radius:1.2vw;
+    }
+
+    .campoLogin input:focus{
+
+        box-shadow:0 0 0 0.6vw rgba(0,168,89,0.25);
+    }
+
+    #btnEntrar{
+
+        margin-top:2.4vw;
+
+        font-size:4.2vw;
+
+        border-radius:1.6vw;
+
+        padding:3.2vw 0;
+    }
+
+    #mensagemErro{
+
+        margin:0 0 4vw 0;
+
+        font-size:3.6vw;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="logo">
+    <a
+        href="https://www.niagara.com.br"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <img
+            src="./Assets/Imagens/logo-niagara.png"
+            alt="Niagara">
+
+    </a>
+</div>
+
+<div id="subtitulo">
+    DPS - PLATAFORMA DIGITAL DE PRODUTOS E SERVIÇOS
+</div>
+
+<div id="titulo">
+    VÁLVULAS PARA ALUMINA
+</div>
+
+<div id="loginContainer">
+
+    <h2>Acesso ao Catálogo</h2>
+
+    <div id="mensagemErro">Usuário ou senha inválidos.</div>
+
+    <form id="formLogin" autocomplete="on">
+
+        <div class="campoLogin">
+            <label for="usuario">Usuário</label>
+            <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                autocomplete="username"
+                required
+                autofocus>
+        </div>
+
+        <div class="campoLogin">
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                name="senha"
+                autocomplete="current-password"
+                required>
+        </div>
+
+        <button
+            type="submit"
+            id="btnEntrar">
+            Entrar
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+// Se já estiver logado nesta aba/sessão, vai direto para o catálogo
+if (sessionStorage.getItem("niagaraLogado") === "1") {
+    window.location.href = "Catalogo.html";
+}
+
+document.getElementById("formLogin")
+.addEventListener("submit", function(evento){
+
+    evento.preventDefault();
+
+    var usuario = document.getElementById("usuario").value.trim();
+    var senha   = document.getElementById("senha").value.trim();
+
+    var mensagemErro = document.getElementById("mensagemErro");
+
+    if (
+        usuario !== "" &&
+        USUARIOS_NIAGARA.hasOwnProperty(usuario) &&
+        USUARIOS_NIAGARA[usuario] === senha
+    ) {
+
+        sessionStorage.setItem("niagaraLogado", "1");
+        sessionStorage.setItem("niagaraUsuario", usuario);
+
+        window.location.href = "Catalogo.html";
+
+    } else {
+
+        mensagemErro.style.display = "block";
+    }
+
+});
+
+function atualizarLayoutLogin(){
+
+    const logo =
+        document.getElementById("logo");
+
+    const titulo =
+        document.getElementById("titulo");
+
+    const subtitulo =
+        document.getElementById("subtitulo");
+
+    const logoRect =
+        logo.getBoundingClientRect();
+
+    const centroArea =
+        logoRect.right +
+        (
+            (window.innerWidth - logoRect.right) / 2
+        );
+
+    subtitulo.style.left =
+        (centroArea - subtitulo.offsetWidth / 2) + "px";
+
+    titulo.style.left =
+        (centroArea - titulo.offsetWidth / 2) + "px";
+
+    const espacamento =
+        0.2 * titulo.offsetHeight;
+
+    const alturaTotal =
+        subtitulo.offsetHeight +
+        espacamento +
+        titulo.offsetHeight;
+
+    const topoGrupo =
+        logoRect.top +
+        (logoRect.height / 2) -
+        (alturaTotal / 2);
+
+    subtitulo.style.top =
+        topoGrupo + "px";
+
+    titulo.style.top =
+        (
+            topoGrupo +
+            subtitulo.offsetHeight +
+            espacamento
+        ) + "px";
+}
+
+window.addEventListener("resize", atualizarLayoutLogin);
+window.addEventListener("load", atualizarLayoutLogin);
+
+</script>
+
+</body>
+</html>
