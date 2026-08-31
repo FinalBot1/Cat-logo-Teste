@@ -10,67 +10,67 @@ export const partsData = [
     {
         name: "02 - Sede",
         mesh: "mesh_13",
-        image: "./Files/Parts/CH5/03.png",
+        image: "./Files/Parts/CH5/02.png",
         pdf: null
     },
     {
         name: "03 - Junta do Corpo",
         mesh: "Junta_2-1",
-        image: "./Files/Parts/CH5/04.png",
+        image: "./Files/Parts/CH5/03.png",
         pdf: null
     },
     {
         name: "04 - Disco",
         mesh: ["mesh_7","mesh_7_1"],
-        image: "./Files/Parts/CH5/06.png",
+        image: "./Files/Parts/CH5/04.png",
         pdf: null
     },
     {
         name: "05 - Eixo",
         mesh: "7729-1",
-        image: "./Files/Parts/CH5/07.png",
+        image: "./Files/Parts/CH5/05.png",
         pdf: null
     },
     {
         name: "06 - Junta da Tampa",
         mesh: "Junta-1",
-        image: "./Files/Parts/CH5/08.png",
+        image: "./Files/Parts/CH5/06.png",
         pdf: null
     },
     {
         name: "07 - Tampa",
         mesh: "7760-2",
-        image: "./Files/Parts/CH5/09.png",
+        image: "./Files/Parts/CH5/07.png",
         pdf: null
     },
     {
         name: "08 - Parafuso Sextavado",
         mesh: ["1-2_x_2-2","mesh_1_instance_1"],
-        image: "./Files/Parts/CH5/10.png",
+        image: "./Files/Parts/CH5/08.png",
         pdf: null
     },
     {
         name: "09 - Prisioneiro",
         mesh: ["mesh_2_instance_1","mesh_2_instance_2","mesh_2_instance_3","Pr_3-4_x_4-6"],
-        image: "./Files/Parts/CH5/11.png",
+        image: "./Files/Parts/CH5/09.png",
         pdf: null
     },
     {
         name: "10 - Arruela de Pressão",
         mesh: ["Ar_3-4-9","mesh_0_instance_1","mesh_0_instance_2","mesh_0_instance_3"],
-        image: "./Files/Parts/CH5/12.png",
+        image: "./Files/Parts/CH5/10.png",
         pdf: null
     },
     {
         name: "11 - Porca Sextavada",
         mesh: ["Po_3-4-10","mesh_4_instance_3","mesh_4_instance_2","mesh_4_instance_1"],
-        image: "./Files/Parts/CH5/13.png",
+        image: "./Files/Parts/CH5/11.png",
         pdf: null
     },
     {
         name: "12 - Bujão",
         mesh: ["Bujão-1"],
-        image: "./Files/Parts/CH5/14.png",
+        image: "./Files/Parts/CH5/12.png",
         pdf: null
     },
 ];
