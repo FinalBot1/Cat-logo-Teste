@@ -63,7 +63,7 @@ export const partsData = [
     },
     {
         name: "11 - Porca Sextavada",
-        mesh: ["Ar_3-4-9","mesh_0_instance_1","mesh_0_instance_2","mesh_0_instance_3","Ar_3-4-12","mesh_5_instance_1","mesh_5_instance_2","mesh_5_instance_3"],
+        mesh: ["Po_3-4-10","mesh_4_instance_3","mesh_4_instance_2","mesh_4_instance_1"],
         image: "./Files/Parts/CH5/13.png",
         pdf: null
     },
